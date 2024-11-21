@@ -1,0 +1,568 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8975959182415164120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cd8f5da25846045a011f939b9bf4e5, type: 3}
+  m_Name: myBlurGlass
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    _event: 450
+    BlurGlassMaterial: {fileID: 2100000, guid: e521a84afcdb60845aec05c3d5385e07, type: 2}
+    DistortAmount: 10
+    TintScale: 0.495
+    IsBlur: 1
+    Downsample: 2
+    Loop: 3
+    Blur: 2
+    blitMaterial: {fileID: 2100000, guid: 45683f52491549e41a32262970f7bc37, type: 2}
+--- !u!114 &-4637989801635789633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27906ec5d64556e4dbd83726f526d182, type: 3}
+  m_Name: myRayMarching
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 018aad1c2bba0f344991d60275b01fe5, type: 2}
+--- !u!114 &-1878332245247344467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
+  m_Name: SSAO
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Settings:
+    AOMethod: 1
+    Downsample: 0
+    AfterOpaque: 0
+    Source: 1
+    NormalSamples: 1
+    Intensity: 0.5
+    DirectLightingStrength: 0.25
+    Radius: 0.25
+    Samples: 0
+    BlurQuality: 0
+    Falloff: 100
+    SampleCount: -1
+  m_BlueNoise256Textures:
+  - {fileID: 2800000, guid: 36f118343fc974119bee3d09e2111500, type: 3}
+  - {fileID: 2800000, guid: 4b7b083e6b6734e8bb2838b0b50a0bc8, type: 3}
+  - {fileID: 2800000, guid: c06cc21c692f94f5fb5206247191eeee, type: 3}
+  - {fileID: 2800000, guid: cb76dd40fa7654f9587f6a344f125c9a, type: 3}
+  - {fileID: 2800000, guid: e32226222ff144b24bf3a5a451de54bc, type: 3}
+  - {fileID: 2800000, guid: 3302065f671a8450b82c9ddf07426f3a, type: 3}
+  - {fileID: 2800000, guid: 56a77a3e8d64f47b6afe9e3c95cb57d5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
+--- !u!114 &-1634971333814539252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: RenderObjects
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    passTag: RenderObjects
+    Event: 300
+    filterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 16384
+      PassNames: []
+    overrideMaterial: {fileID: 2100000, guid: f20d9127680f2684b8ed06cb34d36e49, type: 2}
+    overrideMaterialPassIndex: 0
+    overrideShader: {fileID: 0}
+    overrideShaderPassIndex: 0
+    overrideMode: 1
+    overrideDepthState: 0
+    depthCompareFunction: 4
+    enableWrite: 1
+    stencilSettings:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
+--- !u!114 &-1145018459686408263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee34884cc6f0fb49ba03122f7c8a3cb, type: 3}
+  m_Name: AerialPerspective
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  mySetting:
+    passEvent: 550
+    AerialPerspecMat: {fileID: 2100000, guid: 0a307b5b87598324e95baf0e59a682f8, type: 2}
+--- !u!114 &-1065564880747507002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acca0d77eaac3084db85092ed0a0ac34, type: 3}
+  m_Name: VolumeLight
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    _event: 500
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    overrideMaterial: {fileID: 2100000, guid: 7b2113f5e0b10df4e8ac0ea7a185a23e, type: 2}
+    overrideMaterialPass: 0
+    rtSolidName: _myRT
+    blitMaterial: {fileID: 2100000, guid: 85cf295ca2f8f6943b04dc23da2b1d77, type: 2}
+    tintColor: {r: 0.9946091, g: 0.9273581, b: 0.7439461, a: 1}
+    StepCount: 16
+    Intensity: 1
+    Downsample: 3
+    Loop: 4
+    Blur: 2
+    _debug: 2
+--- !u!114 &-910342407281106239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8752619fca77d04ca5f2504b8c6344d, type: 3}
+  m_Name: oldBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    QueueMin: 1000
+    QueueMax: 5000
+    layerMask:
+      m_Bits: 512
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 1b6cb96e6ece3554786698cc27ba2e2b, type: 2}
+    SolidColor:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+--- !u!114 &-606771406413968518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3667d6115f31fc0479b46e124d17b4a9, type: 3}
+  m_Name: myBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    _event: 550
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    overrideMaterial: {fileID: 2100000, guid: bdc6fa603b522c84c89c25b2c52a254a, type: 2}
+    overrideMaterialPass: 0
+    Distance: 10
+    tintColor: {r: 1, g: 1, b: 1, a: 1}
+    Downsample: 3
+    Loop: 3
+    Blur: 2
+    blitMaterial: {fileID: 2100000, guid: e7c49db0e4a8c324fb0ff4b81346d51a, type: 2}
+--- !u!114 &-407159337040476308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508487a1db5cd54469426696c9a49427, type: 3}
+  m_Name: mySSR
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    passEvent: 500
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4097
+    overrideMaterial: {fileID: 2100000, guid: d87cc0480ef39814a9a40294f7d1ffb9, type: 2}
+    Downsample: 3
+    Loop: 3
+    Blur: 2
+    blitMaterial: {fileID: 2100000, guid: 84dbde93ea98c9a408024d999513b517, type: 2}
+    Intensity: 1
+    MaxDistance: 10
+    Stride: 2
+    StepCount: 200
+    Thickness: 0.25
+    MipCount: 3
+    _debugSSR: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
+  m_Name: URP-HighFidelity-Renderer
+  m_EditorClassIdentifier: 
+  debugShaders:
+    debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,
+      type: 3}
+    hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
+  m_RendererFeatures:
+  - {fileID: -1878332245247344467}
+  - {fileID: 7726012801870056808}
+  - {fileID: 6395985182211822359}
+  - {fileID: 9035474114424390789}
+  - {fileID: -606771406413968518}
+  - {fileID: -8975959182415164120}
+  - {fileID: 8278867709531890853}
+  - {fileID: 1091551976544140620}
+  - {fileID: -1145018459686408263}
+  - {fileID: -1634971333814539252}
+  - {fileID: -407159337040476308}
+  - {fileID: -1065564880747507002}
+  m_RendererFeatureMap: adc0de57c6d2eee568cd9589b54f386b17d365c6a21ac35885c480c7d573647d7acbd4e49e5094f7280dbd25aefc6e83a5a419895172e4724cfdc947bdf8250fb96f2009c7131cf00cac09fe3b6a4fe96c07b87cbd7a59fac6d2e9f5625a36f1
+  m_UseNativeRenderPass: 0
+  postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
+  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
+  shaders:
+    blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
+    copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+    screenSpaceShadowPS: {fileID: 0}
+    samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
+    stencilDeferredPS: {fileID: 4800000, guid: e9155b26e1bc55942a41e518703fe304, type: 3}
+    fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
+    fallbackLoadingPS: {fileID: 4800000, guid: 7f888aff2ac86494babad1c2c5daeee2, type: 3}
+    materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
+    coreBlitPS: {fileID: 4800000, guid: 93446b5c5339d4f00b85c159e1159b7c, type: 3}
+    coreBlitColorAndDepthPS: {fileID: 4800000, guid: d104b2fc1ca6445babb8e90b0758136b,
+      type: 3}
+    blitHDROverlay: {fileID: 4800000, guid: a89bee29cffa951418fc1e2da94d1959, type: 3}
+    cameraMotionVector: {fileID: 4800000, guid: c56b7e0d4c7cb484e959caeeedae9bbf,
+      type: 3}
+    objectMotionVector: {fileID: 4800000, guid: 7b3ede40266cd49a395def176e1bc486,
+      type: 3}
+    dataDrivenLensFlare: {fileID: 4800000, guid: 6cda457ac28612740adb23da5d39ea92,
+      type: 3}
+  m_AssetVersion: 2
+  m_OpaqueLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_TransparentLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_DefaultStencilState:
+    overrideStencilState: 0
+    stencilReference: 0
+    stencilCompareFunction: 8
+    passOperation: 2
+    failOperation: 0
+    zFailOperation: 0
+  m_ShadowTransparentReceive: 1
+  m_RenderingMode: 0
+  m_DepthPrimingMode: 0
+  m_CopyDepthMode: 0
+  m_AccurateGbufferNormals: 0
+  m_IntermediateTextureMode: 1
+--- !u!114 &1091551976544140620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c601c63f7f301754381201e3204e79c3, type: 3}
+  m_Name: Atmosphere
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    CS: {fileID: 7200000, guid: fe0f8a511266cb74e85fde2d0dfbbdd4, type: 3}
+    GroundRadius: 6360000
+    SeaLevel: -1
+    MultiScatteringScale: 1
+    AtmosphereHeight: 60000
+    RayleighScatteringScale: 1
+    RayleighExponentialDistribution: 8000
+    MieScatteringScale: 1
+    MieAnisotropy: 0.8
+    MieExponentialDistribution: 1200
+    OzoneAbsorptionScale: 1
+    OzoneTentTipAltitude: 25000
+    OzoneTentWidth: 15000
+    SunLightColor: {r: 1, g: 1, b: 1, a: 1}
+    SunLightIntensity: 12
+    SunDiskAngle: 1.5
+    AerialPerspectiveDistance: 32000
+--- !u!114 &1960979885788614845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedb44c16b9cb614c99d2cc4cd359f92, type: 3}
+  m_Name: blur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  setting:
+    passEvent: 550
+    myMat: {fileID: 2100000, guid: bd15229372416d547abf0eb6412067f1, type: 2}
+    downsample: 2
+    loop: 4
+    blur: 0.6
+--- !u!114 &4497347000427996010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7cdbeb7bda8bd42ae465768a485556, type: 3}
+  m_Name: myRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    showInSceneView: 1
+    _event: 400
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    overrideMaterial: {fileID: 2100000, guid: b2a3633b96ae85345b368cc341c5e1ee, type: 2}
+    overrideMaterialPass: 0
+    Distance: 10
+    tintColor: {r: 0, g: 1, b: 0.005843401, a: 1}
+    rtSolidColorName: 
+    blitMaterial: {fileID: 2100000, guid: 7dd30eae418484343b9f07fe109c1626, type: 2}
+--- !u!114 &5536765581788746843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33cf47222dd832488a62cbb15608fce, type: 3}
+  m_Name: myBlit
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  mySetting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 1dec66d0c9b3ebe49901314a9369b126, type: 2}
+    TintColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &6159291766032282867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff323c0fc56bea4b9436250384345a1, type: 3}
+  m_Name: MyBlur
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    m_RenderPassEvent: 500
+    m_Material: {fileID: 2100000, guid: 24422ef6a3f200a4b8dd03aeff10c49e, type: 2}
+    downsample: 2
+    loop: 2
+    blur: 0.53
+--- !u!114 &6395985182211822359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27906ec5d64556e4dbd83726f526d182, type: 3}
+  m_Name: myRayMarching
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  setting:
+    passEvent: 500
+    myMat: {fileID: 2100000, guid: 018aad1c2bba0f344991d60275b01fe5, type: 2}
+--- !u!114 &7726012801870056808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: Xray
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    passTag: Xray
+    Event: 350
+    filterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 128
+      PassNames: []
+    overrideMaterial: {fileID: 2100000, guid: 1b6cb96e6ece3554786698cc27ba2e2b, type: 2}
+    overrideMaterialPassIndex: 0
+    overrideShader: {fileID: 0}
+    overrideShaderPassIndex: 0
+    overrideMode: 1
+    overrideDepthState: 1
+    depthCompareFunction: 5
+    enableWrite: 1
+    stencilSettings:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
+--- !u!114 &8278867709531890853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b6169c444e779b42a9c98e692c8f0d0, type: 3}
+  m_Name: myBloom
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    _event: 400
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    overrideMaterial: {fileID: 2100000, guid: 1c28e5ec5e2620a4892b53dec5b1f8fd, type: 2}
+    overrideMaterialPass: 0
+    Distance: 10
+    tintColor: {r: 1, g: 1, b: 1, a: 1}
+    Downsample: 3
+    Loop: 10
+    Blur: 1
+    showBlur: 0
+    BloomThreshold: 0.45
+    BlurIntensity: 1.5
+    blitMaterial: {fileID: 2100000, guid: 6ea7c50fcfe75af438aaea419099b2f4, type: 2}
+--- !u!114 &9035474114424390789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7cdbeb7bda8bd42ae465768a485556, type: 3}
+  m_Name: myOutline
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    _event: 600
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    overrideMaterial: {fileID: 2100000, guid: b2a3633b96ae85345b368cc341c5e1ee, type: 2}
+    overrideMaterialPass: 0
+    Distance: 10
+    tintColor: {r: 0.5999999, g: 0, b: 1, a: 1}
+    rtSolidColorName: 
+    blitMaterial: {fileID: 2100000, guid: 7dd30eae418484343b9f07fe109c1626, type: 2}
+--- !u!114 &9086394866440762687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dac79d7432a0a546bf97cdaa9189a23, type: 3}
+  m_Name: HaoyanTestRF
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    showInSceneView: 1
+    _event: 500
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    overrideMaterial: {fileID: 2100000, guid: b2a3633b96ae85345b368cc341c5e1ee, type: 2}
+    overrideMaterialPass: 0
+    rtCustomColorName: _myRT
+    blitMaterial: {fileID: 2100000, guid: f482c4a7882d94442903acfc7aeba848, type: 2}
+    tintColor: {r: 0.56719637, g: 0, b: 1, a: 1}

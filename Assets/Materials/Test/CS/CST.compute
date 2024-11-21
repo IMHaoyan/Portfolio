@@ -1,0 +1,24 @@
+#pragma kernel CSTMain
+RWTexture2D<float4> Result;
+//computeShader.Dispatch(kernal, 32, 32, 1);
+[numthreads(8, 8, 1)]
+void CSTMain(uint3 id : SV_DispatchThreadID, uint3 gid : SV_GroupID, uint pid : SV_GroupIndex, uint3 gtid : SV_GroupThreadID) {
+    //int x = gid.x ;
+    //int y = gid.y ;
+
+
+    // int x = id.x / 8;
+    // int y = id.y / 8;
+    // int r = (x + y)%2;
+    // Result[id.xy] = float4(r, r, r, r);
+
+    // float x = pid.x % 8 / 8.0;
+    // float y = (pid - pid%8) / 64.0;//y = pid/64.0;
+    // Result[id.xy] = float4(x, y, 0, 0);
+
+    float u = id.x / 256.0;
+    float v = id.y / 256.0;
+    Result[id.xy] = float4(u, v, 0, 0);
+
+    //Result[id.xy] = float4(id.x & id.y, (id.x & 15) / 15.0, (id.y & 15) / 15.0, 0.0);
+}

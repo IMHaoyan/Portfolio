@@ -1,0 +1,176 @@
+#pragma kernel CSMainDiffuse
+#pragma kernel CSMainSpecular
+#define PI 3.1415926
+
+TextureCube<float4> _envCubemap;
+SamplerState _PointClamp;
+RWStructuredBuffer<float4> _Result1;
+RWStructuredBuffer<float4> _Result2;
+
+int _Face;
+int _Resolution;
+int _envCubemapSize;
+float _FilterMipRoughness;
+
+//低差异序列生成[0,1]均匀分布的随机数
+float RadicalInverse_VdC(uint bits) {
+    bits = (bits << 16u) | (bits >> 16u);
+    bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);
+    bits = ((bits & 0x33333333u) << 2u) | ((bits & 0xCCCCCCCCu) >> 2u);
+    bits = ((bits & 0x0F0F0F0Fu) << 4u) | ((bits & 0xF0F0F0F0u) >> 4u);
+    bits = ((bits & 0x00FF00FFu) << 8u) | ((bits & 0xFF00FF00u) >> 8u);
+    return float(bits) * 2.3283064365386963e-10;
+}
+float2 Hammersley(uint i, uint N) {
+    return float2(float(i) / float(N), RadicalInverse_VdC(i));
+}
+
+//根据面和uv计算方向
+float3 DirectionFromCubemapTexel(int face, float2 uv) {
+    float3 dir = 0;
+
+    switch(face) {
+        case 0: //+X
+        dir.x = 1.0;
+        dir.yz = uv.yx * - 2.0 + 1.0;
+        break;
+
+        case 1: //-X
+        dir.x = -1.0;
+        dir.y = uv.y * - 2.0f + 1.0f;
+        dir.z = uv.x * 2.0f - 1.0f;
+        break;
+
+        case 2: //+Y
+        dir.xz = uv * 2.0f - 1.0f;
+        dir.y = 1.0f;
+        break;
+        case 3: //-Y
+        dir.x = uv.x * 2.0f - 1.0f;
+        dir.z = uv.y * - 2.0f + 1.0f;
+        dir.y = -1.0f;
+        break;
+
+        case 4: //+Z
+        dir.x = uv.x * 2.0f - 1.0f;
+        dir.y = uv.y * - 2.0f + 1.0f;
+        dir.z = 1;
+        break;
+
+        case 5: //-Z
+        dir.xy = uv * - 2.0f + 1.0f;
+        dir.z = -1;
+        break;
+    }
+    return normalize(dir);
+}
+
+float3 ImportanceSampleGGX(float2 Xi, float3 N, float roughness) {
+    float3 up = abs(N.z) < 0.999 ? float3(0.0, 0.0, 1.0) : float3(1.0, 0.0, 0.0);
+    float3 tangent = normalize(cross(up, N));
+    float3 bitangent = cross(N, tangent);
+
+    //根据GGX的cdf的反函数求得
+    float a = roughness * roughness;
+    float phi = 2.0 * PI * Xi.x;
+    float cosTheta = sqrt((1.0 - Xi.y) / (1.0 + (a * a - 1.0) * Xi.y));
+    float sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+
+    //转球面坐标到直角坐标
+    float3 H;
+    H.x = cos(phi) * sinTheta;
+    H.y = sin(phi) * sinTheta;
+    H.z = cosTheta;
+
+    float3 sampleVec = tangent * H.x + bitangent * H.y + N * H.z;
+    return normalize(sampleVec);
+}
+
+float DistributionGGX(float NdotH, float roughness) {
+    float a = roughness * roughness;
+    float a2 = a * a;
+    float NdotH2 = NdotH * NdotH;
+    float nom = a2;
+    float denom = (NdotH2 * (a2 - 1.0) + 1.0);
+    denom = PI * denom * denom;
+    return nom / denom;
+}
+
+
+[numthreads(8, 8, 1)]
+void CSMainDiffuse(uint3 id : SV_DispatchThreadID) {
+    //+0.5/Resolution是像素中心点
+    float2 uv = ((float2)id.xy + 0.5) / (float2) (_Resolution);
+    uint index = id.y * _Resolution + id.x;
+
+    float3 dir = DirectionFromCubemapTexel(_Face, uv);
+    float3 tangent = float3(0, 1, 0);
+    float upOrDown = dot(dir, tangent);
+    if (upOrDown == 1)
+        tangent = float3(1, 0, 0);
+    else if (upOrDown == -1)
+        tangent = float3(-1, 0, 0);
+    else
+        tangent = normalize(cross(float3(0, 1, 0), dir));
+    float3 binormal = normalize(cross(dir, tangent));
+    float3x3 TBN = float3x3(tangent, binormal, dir);
+
+    float sampleDelta = 0.025;
+    int N1 = 0;
+    int N2 = 0;
+    //黎曼和积分
+    float3 irradiance = float3(0, 0, 0);
+    for (float phi = 0.0; phi < 2.0 * PI; phi += sampleDelta) {
+        N2 = 0;
+        for (float theta = 0.0; theta < 0.5 * PI; theta += sampleDelta) {
+            //球面坐标
+            float3 normalTS = float3(sin(theta) * cos(phi), sin(theta) * sin(phi), cos(theta));
+            float3 normalWS = mul(normalTS, TBN);
+            irradiance += _envCubemap.SampleLevel(_PointClamp, normalWS, 0).rgb * cos(theta) * sin(theta);
+            N2++;
+        }
+        N1++;
+    }
+    irradiance = PI / (float)(N1 * N2) * irradiance;
+    _Result1[index] = float4(irradiance.xyz, 1.0);
+}
+
+[numthreads(1, 1, 1)]
+void CSMainSpecular(uint3 id : SV_DispatchThreadID) {
+    float2 uv = ((float2)id.xy + 0.5) / (float2) (_Resolution);
+    uint index = id.y * _Resolution + id.x;
+
+    float3 dir = DirectionFromCubemapTexel(_Face, uv);
+    
+    float3 N = dir;
+    float3 R = N;
+    float3 V = R;
+
+    const uint SAMPLE_COUNT = 1024;
+    float totalWeight = 0.0;
+    float3 prefilteredColor = 0.0;
+
+    for (uint i = 0; i < SAMPLE_COUNT; ++i) {
+        float2 Xi = Hammersley(i, SAMPLE_COUNT);
+        float3 H = ImportanceSampleGGX(Xi, N, _FilterMipRoughness);
+        float3 L = normalize(2.0 * dot(V, H) * H - V);//reflect
+        float NdotL = max(dot(N, L), 0.0);
+
+        if (NdotL > 0.0) {
+            //使用mip来采样EnvMap是为了防止太多高亮噪点
+            float NdotH = saturate(dot(N, H));
+            float HdotV = saturate(dot(H, V));
+            float D = DistributionGGX(NdotH, _FilterMipRoughness);
+            float pdf = (D * NdotH / (4.0 * HdotV)) + 0.0001;
+            float resolution = _envCubemapSize;// resolution of source cubemap (per face)
+            float saTexel = 4.0 * PI / (6.0 * resolution * resolution);
+            float saSample = 1.0 / (float(SAMPLE_COUNT) * pdf + 0.0001);
+            float mipLevel = _FilterMipRoughness == 0.0 ? 0.0 : 0.5 * log2(saSample / saTexel) ;
+            
+            prefilteredColor += _envCubemap.SampleLevel(_PointClamp, L, mipLevel).rgb * NdotL;
+            totalWeight += NdotL;
+        }
+    }
+    prefilteredColor = prefilteredColor / totalWeight;
+    _Result2[index] = float4(prefilteredColor.xyz, 1.0);
+}

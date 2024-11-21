@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cd5f593c072fe304e83759d978450183
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - computeShader: {fileID: 7200000, guid: 704be0b0817377b49b770ed33024a121, type: 3}
+  - envCubemap: {fileID: 8900000, guid: fad2ee71a652f7a4b839333741a967ee, type: 2}
+  - outputIrradianceMap: {fileID: 8900000, guid: 54dcd7090b26be9489807a207ec83e16,
+      type: 2}
+  - outputFilteredEnvMap: {fileID: 8900000, guid: fad2ee71a652f7a4b839333741a967ee,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
