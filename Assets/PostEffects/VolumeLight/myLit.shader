@@ -71,7 +71,7 @@ Shader "URPCustom/Lit" {
                 //return half4(i.positionWS,1);
                 Light mainLight = GetMainLight(TransformWorldToShadowCoord(i.positionWS));
                 float col =  mainLight.shadowAttenuation;//GetLightAttenuation(positionWS);
-                return half4(col,col,col, 1);
+               //return half4(col,col,col, 1);
 
 
                 float3 lightDir = normalize(mainLight.direction);
@@ -104,7 +104,7 @@ Shader "URPCustom/Lit" {
             }
             ENDHLSL
         }
-        UsePass "Universal Render Pipeline/Lit/ShadowCaster"
+        //UsePass "Universal Render Pipeline/Lit/ShadowCaster"
         UsePass "Universal Render Pipeline/Lit/DepthOnly"
         UsePass "Universal Render Pipeline/Lit/DepthNormals"
         

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
   m_Name: SSAO
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   m_Settings:
     AOMethod: 1
     Downsample: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee34884cc6f0fb49ba03122f7c8a3cb, type: 3}
   m_Name: AerialPerspective
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   mySetting:
     passEvent: 550
     AerialPerspecMat: {fileID: 2100000, guid: 0a307b5b87598324e95baf0e59a682f8, type: 2}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c601c63f7f301754381201e3204e79c3, type: 3}
   m_Name: Atmosphere
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     CS: {fileID: 7200000, guid: fe0f8a511266cb74e85fde2d0dfbbdd4, type: 3}
     GroundRadius: 6360000
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27906ec5d64556e4dbd83726f526d182, type: 3}
   m_Name: myRayMarching
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   setting:
     passEvent: 500
     myMat: {fileID: 2100000, guid: 018aad1c2bba0f344991d60275b01fe5, type: 2}
